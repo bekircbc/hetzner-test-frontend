@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useMemo } from "react";
 import "./App.css";
 import axios from "axios";
 
@@ -7,7 +7,7 @@ const baseUrl = "http://localhost:9384";
 function App() {
   const [employees, setEmployees] = useState([]);
 
-  useEffect(() => {
+  useMemo(() => {
     (async () => {
       const data = await axios.get(baseUrl);
       setEmployees(data.data);

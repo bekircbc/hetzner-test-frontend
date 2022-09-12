@@ -5,11 +5,13 @@ import axios from "axios";
 const baseUrl = "http://localhost:9384";
 
 function App() {
-  const [employees, setEmployees] = useState();
+  const [employees, setEmployees] = useState([]);
 
   useEffect(() => {
     (async () => {
-      setEmployees((await axios.get(baseUrl)).data);
+      const data = await axios.get(baseUrl);
+      setEmployees(data.data);
+      console.log(employees);
     })();
   }, []);
 

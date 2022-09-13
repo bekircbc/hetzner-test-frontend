@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.css";
+import axios from "axios";
 
 // const _products = [
 //   {
@@ -47,11 +48,7 @@ function App() {
   const [employees, setEmployees] = useState([]);
   useEffect(() => {
     (async () => {
-      const response = await fetch(baseUrl);
-      console.log(response);
-      const data = await response.json();
-      console.log(data);
-      setEmployees(data);
+      setEmployees((await axios.get(baseUrl)).data);
     })();
   }, []);
 
@@ -62,10 +59,10 @@ function App() {
         {employees.map((employee, i) => {
           return (
             <div key={i}>
-              <div>{employee.firstname}</div>
-              <div>{employee.lastname}</div>
-              <div>{employee.department}</div>
-              <div>{employee.age}</div>
+              {employee.firstname}
+              {employee.lastname}
+              {employee.department}
+              {employee.age}
             </div>
           );
         })}

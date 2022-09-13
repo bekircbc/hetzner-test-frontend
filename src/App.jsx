@@ -1,31 +1,75 @@
-import { useState, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
-import axios from "axios";
 
 const baseUrl = "http://localhost:9384";
 
+// const _products = [
+//   {
+//     id: 1,
+//     title: "iPhone 9",
+//     description: "An apple mobile which is nothing like apple",
+//     price: 549,
+//     discountPercentage: 12.96,
+//     rating: 4.69,
+//     stock: 94,
+//     brand: "Apple",
+//     category: "smartphones",
+//     thumbnail: "https://dummyjson.com/image/i/products/1/thumbnail.jpg",
+//     images: [
+//       "https://dummyjson.com/image/i/products/1/1.jpg",
+//       "https://dummyjson.com/image/i/products/1/2.jpg",
+//       "https://dummyjson.com/image/i/products/1/3.jpg",
+//       "https://dummyjson.com/image/i/products/1/4.jpg",
+//       "https://dummyjson.com/image/i/products/1/thumbnail.jpg",
+//     ],
+//   },
+//   {
+//     id: 2,
+//     title: "iPhone 9",
+//     description: "An apple mobile which is nothing like apple",
+//     price: 549,
+//     discountPercentage: 12.96,
+//     rating: 4.69,
+//     stock: 94,
+//     brand: "Apple",
+//     category: "smartphones",
+//     thumbnail: "https://dummyjson.com/image/i/products/1/thumbnail.jpg",
+//     images: [
+//       "https://dummyjson.com/image/i/products/1/1.jpg",
+//       "https://dummyjson.com/image/i/products/1/2.jpg",
+//       "https://dummyjson.com/image/i/products/1/3.jpg",
+//       "https://dummyjson.com/image/i/products/1/4.jpg",
+//       "https://dummyjson.com/image/i/products/1/thumbnail.jpg",
+//     ],
+//   },
+// ];
+
 function App() {
   const [employees, setEmployees] = useState([]);
-
-  useMemo(() => {
+  useEffect(async () => {
     (async () => {
-      const data = await axios.get(baseUrl);
-      setEmployees(data.data);
-      console.log(employees);
+      const response = await fetch(baseUrl);
+      const data = await response.json();
+      setProducts(data.employees);
+      console.log(products);
     })();
   }, []);
 
   return (
     <div className="App">
-      <h1>Employees</h1>
-      {employees.forEach((employee) => {
-        <div className="card">
-          <div>{employee.firstname}</div>
-          <div>{employee.lastname}</div>
-          <div>{employee.department}</div>
-          <div>{employee.age}</div>
-        </div>;
-      })}
+      <div>Employees</div>
+      <div>
+        {employees.forEach((employee) => {
+          return (
+            <div>
+              <div>{employee.firstname}</div>
+              <div>{employee.lastname}</div>
+              <div>{employee.department}</div>
+              <div>{employee.age}</div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
-
-const baseUrl = "http://localhost:9384";
 
 // const _products = [
 //   {
@@ -45,13 +43,13 @@ const baseUrl = "http://localhost:9384";
 // ];
 
 function App() {
+  const baseUrl = "http://localhost:9384";
   const [employees, setEmployees] = useState([]);
-  useEffect(async () => {
+  useEffect(() => {
     (async () => {
       const response = await fetch(baseUrl);
       const data = await response.json();
-      setProducts(data.employees);
-      console.log(products);
+      setEmployees(data);
     })();
   }, []);
 
@@ -59,7 +57,7 @@ function App() {
     <div className="App">
       <div>Employees</div>
       <div>
-        {employees.forEach((employee) => {
+        {employees.map((employee) => {
           return (
             <div>
               <div>{employee.firstname}</div>

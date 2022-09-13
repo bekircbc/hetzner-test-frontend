@@ -57,9 +57,9 @@ function App() {
     <div className="App">
       <div>Employees</div>
       <div>
-        {employees.map((employee) => {
+        {employees.map((employee, i) => {
           return (
-            <div>
+            <div key={i}>
               <div>{employee.firstname}</div>
               <div>{employee.lastname}</div>
               <div>{employee.department}</div>

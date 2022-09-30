@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import axios from "axios";
 
-const baseUrl = "http://bscebeci.de:8324";
+const baseUrl = "http://www.bscebeci.de:8324";
 
 function App() {
   const [employees, setEmployees] = useState([]);
